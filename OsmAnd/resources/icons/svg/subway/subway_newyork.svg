@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="16"
+   height="16"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r"
+   sodipodi:docname="subway_newyork.svg">
+  <defs
+     id="defs13" />
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1004"
+     id="namedview11"
+     showgrid="true"
+     inkscape:zoom="45.254834"
+     inkscape:cx="7.0756894"
+     inkscape:cy="8.0817364"
+     inkscape:window-x="1680"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2"
+     showguides="false">
+    <sodipodi:guide
+       position="0,0"
+       orientation="0,580"
+       id="guide2989" />
+    <sodipodi:guide
+       position="580,0"
+       orientation="-580,0"
+       id="guide2991" />
+    <sodipodi:guide
+       position="580,580"
+       orientation="0,-580"
+       id="guide2993" />
+    <sodipodi:guide
+       position="0,580"
+       orientation="580,0"
+       id="guide2995" />
+    <sodipodi:guide
+       position="0,0"
+       orientation="0,580"
+       id="guide2997" />
+    <sodipodi:guide
+       position="580,0"
+       orientation="-580,0"
+       id="guide2999" />
+    <sodipodi:guide
+       position="580,580"
+       orientation="0,-580"
+       id="guide3001" />
+    <sodipodi:guide
+       position="0,580"
+       orientation="580,0"
+       id="guide3003" />
+    <inkscape:grid
+       type="xygrid"
+       id="grid3013"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata2975">image/svg+xmlen<rdf:RDF>
+  <cc:Work
+     rdf:about="">
+    <dc:format>image/svg+xml</dc:format>
+    <dc:type
+       rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+    <dc:title />
+  </cc:Work>
+</rdf:RDF>
+</metadata>
+  <path
+     style="opacity:1;fill:#fefefe;fill-opacity:1;fill-rule:nonzero;stroke:none"
+     d="m 7.8406678,3.3935925 c -1.5920771,0 -3.0013838,0.8110298 -3.8276384,2.043427 0.00898,3.137519 -3.358e-4,0.1750548 0.033662,5.1562595 0.8366693,1.15398 2.2624724,2.013129 3.793974,2.013129 2.5387445,0 4.6052855,-2.067812 4.6052855,-4.606408 0,-2.538596 -2.066541,-4.6064075 -4.6052833,-4.6064075 z"
+     id="path4167"
+     inkscape:connector-curvature="0"
+     sodipodi:nodetypes="sccsss" />
+  <path
+     inkscape:connector-curvature="0"
+     style="fill:#000099;fill-opacity:1;fill-rule:nonzero;stroke:none"
+     id="path58"
+     d="m 9.2522892,7.3595035 -0.4321787,-0.036699 0,2.27876 -0.6433026,0.1126856 -0.00127,-2.4475727 -0.5470231,-0.048355 0,-0.8976016 1.6238002,0.2823624 0,0.7564203 z m 1.2252978,1.9536543 -0.381665,0.065626 -0.0449,-0.3324455 -0.3721665,0.048355 -0.046197,0.3656897 -0.4917595,0.086781 0.486578,-2.8737067 0.4628334,0.079873 0.387277,2.5598272 z M 9.9828044,8.4854991 9.8809125,7.6077579 l -0.022457,0 -0.1036192,0.8911254 0.227962,-0.013384 z M 7.8560202,11.985238 c 2.2010458,0 3.9850228,-1.78441 3.9850228,-3.9854539 0,-2.2010452 -1.783977,-3.9850229 -3.9850228,-3.9850229 -1.3802945,0 -2.5965253,0.7015886 -3.3114977,1.7680031 l 1.1044082,0.1934225 0.30395,2.3128676 c 0.00127,-0.00388 0.02202,-0.0013 0.02202,-0.0013 l 0.3328762,-2.1967275 1.105704,0.1925592 0,3.5653648 -0.6977029,0.1213203 0,-1.5318371 c 0,0 0.026337,-0.6601408 0.010794,-0.772395 0,0 -0.03022,0 -0.030654,-0.00216 L 6.2792812,10.04799 5.5867595,10.169743 5.0772983,7.6017126 5.0466439,7.5991213 c -0.011227,0.093257 0.03713,0.8993285 0.03713,0.8993285 l 0,1.7589362 -0.4554926,0.07987 c 0.7240391,0.998634 1.9001175,1.647981 3.2277386,1.647981" />
+</svg>

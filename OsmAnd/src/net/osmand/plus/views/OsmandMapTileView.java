@@ -11,6 +11,7 @@ import net.osmand.access.AccessibilityActionsProvider;
 import net.osmand.access.AccessibleToast;
 import net.osmand.access.MapExplorer;
 import net.osmand.core.android.MapRendererView;
+import net.osmand.custom.MyShortcuts;
 import net.osmand.data.LatLon;
 import net.osmand.data.QuadPoint;
 import net.osmand.data.QuadPointDouble;
@@ -935,6 +936,8 @@ public class OsmandMapTileView implements IMapDownloaderCallback {
 				afterTwoFingerTap = false;
 				return;
 			}
+            MyShortcuts.showToast("Long Clicked",getContext());
+
 			if (log.isDebugEnabled()) {
 				log.debug("On long click event " + e.getX() + " " + e.getY()); //$NON-NLS-1$ //$NON-NLS-2$
 			}
