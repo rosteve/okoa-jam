@@ -1,6 +1,8 @@
 package net.osmand.plus.routing;
 
 
+import android.util.Log;
+
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -10,6 +12,7 @@ import java.util.List;
 import net.osmand.Location;
 import net.osmand.PlatformUtil;
 import net.osmand.ValueHolder;
+import net.osmand.custom.MyShortcuts;
 import net.osmand.data.LatLon;
 import net.osmand.plus.ApplicationMode;
 import net.osmand.plus.GPXUtilities.GPXFile;
@@ -60,6 +63,8 @@ public class RoutingHelper {
 	private List<LatLon> intermediatePoints;
 	private Location lastProjection;
 	private Location lastFixedLocation;
+//    private Location lastFixedLocationTraffic;
+
 	
 	private static final int RECALCULATE_THRESHOLD_COUNT_CAUSING_FULL_RECALCULATE = 3;
 	private static final int RECALCULATE_THRESHOLD_CAUSING_FULL_RECALCULATE_INTERVAL = 120000;
@@ -264,7 +269,7 @@ public class RoutingHelper {
 		List<Location> routeNodes = route.getImmutableAllLocations();
 		return getOrthogonalDistance(lastFixedLocation, routeNodes.get(route.currentRoute -1), routeNodes.get(route.currentRoute));
 	}
-	
+//	TODO set current location
 	private Location setCurrentLocation(Location currentLocation, boolean returnUpdatedLocation, 
 			RouteCalculationResult previousRoute, boolean targetPointsChanged) {
 		Location locationProjection = currentLocation;
@@ -324,7 +329,7 @@ public class RoutingHelper {
 						voiceRouter.interruptRouteCommands();
 					}
 				}
-				
+
 				// calculate projection of current location
 				if (currentRoute > 0) {
 					locationProjection = new Location(currentLocation);
@@ -339,6 +344,10 @@ public class RoutingHelper {
 				}
 			}
 			lastFixedLocation = currentLocation;
+//            TODO Altering latitudes  and longitudes to set new route
+//            lastFixedLocationTraffic.setLatitude(currentLocation.getLatitude()+2);
+//            lastFixedLocationTraffic.setLongitude(currentLocation.getLongitude()+2);
+            currentLocation.getLongitude();
 			lastProjection = locationProjection;
 		}
 
@@ -394,7 +403,7 @@ public class RoutingHelper {
 		}
 		return index;
 	}
-
+//TODO updating my current status as navigation continues
 	private boolean updateCurrentRouteStatus(Location currentLocation, float posTolerance) {
 		List<Location> routeNodes = route.getImmutableAllLocations();
 		int currentRoute = route.currentRoute;
@@ -507,7 +516,7 @@ public class RoutingHelper {
 		}
 		return false;
 	}
-	
+
 
 	public boolean identifyUTurnIsNeeded(Location currentLocation, float posTolerance) {
 		if (finalLocation == null || currentLocation == null || !route.isCalculated()) {
@@ -571,7 +580,7 @@ public class RoutingHelper {
 		//wrongMovementDetected = 0;
 		return false;
 	}
-
+//TODO Setting new route
 	private void setNewRoute(RouteCalculationResult prevRoute, final RouteCalculationResult res, Location start){
 		final boolean newRoute = !prevRoute.isCalculated();
 		if (isFollowingMode) {
@@ -701,13 +710,16 @@ public class RoutingHelper {
 //		}
 //		return false;
 //	}
-	
+//	TODO getting current speed and name
 	public synchronized String getCurrentName(TurnType[] next){
 		NextDirectionInfo n = getNextRouteDirectionInfo(new NextDirectionInfo(), false);
 		Location l = lastFixedLocation;
 		float speed = 0;
 		if(l != null && l.hasSpeed()) {
 			speed = l.getSpeed();
+			Log.e("speed is",speed+"");
+//			MyShortcuts.showToast(speed+" "+n.directionInfo.getStreetName(),getApplication());
+			app.showToastMessage(speed+"");
 		}
 		if(n.distanceTo > 0  && n.directionInfo != null && !n.directionInfo.getTurnType().isSkipToSpeak() && 
 				voiceRouter.isDistanceLess(speed, n.distanceTo, voiceRouter.PREPARE_DISTANCE * 0.75f, 0f)) {
@@ -803,12 +815,14 @@ public class RoutingHelper {
 			if (onlineSourceWithoutInternet && settings.GPX_ROUTE_CALC_OSMAND_PARTS.get()) {
 				if (params.previousToRecalculate != null && params.previousToRecalculate.isCalculated()) {
 					res = provider.recalculatePartOfflineRoute(res, params);
+                    Log.e("onlinesource","inside online source without internet");
 				}
 			}
 			RouteCalculationResult prev = route;
 			synchronized (RoutingHelper.this) {
 				if (res.isCalculated()) {
 					route = res;
+//                    TODO removing the impassable roads here
 				} else {
 					evalWaitInterval = evalWaitInterval * 3 / 2;
 					evalWaitInterval = Math.min(evalWaitInterval, 120000);
@@ -817,7 +831,7 @@ public class RoutingHelper {
 			}
 			if(res.isCalculated()){
 				setNewRoute(prev, res, params.start);
-				
+//				TODO setNew route after calculation
 			} else if (onlineSourceWithoutInternet) {
 				showMessage(app.getString(R.string.error_calculating_route)
 						+ ":\n" + app.getString(R.string.internet_connection_required_for_online_route)); //$NON-NLS-1$
@@ -835,12 +849,17 @@ public class RoutingHelper {
 			this.prevRunningJob = prevRunningJob;
 		}
 	}
-	
+//	TODO USE THIS FUNCTION TO SET NEW ROUTE TO AVOID JAM
 	public void recalculateRouteDueToSettingsChange() {
 		clearCurrentRoute(finalLocation, intermediatePoints);
 		recalculateRouteInBackground(lastFixedLocation, finalLocation, intermediatePoints, currentGPXRoute, route, true, false);
 	}
-	
+
+	/*public void recalculateRouteDueToTraffic() {
+		clearCurrentRoute(finalLocation, intermediatePoints);
+		recalculateRouteInBackground(lastFixedLocationTraffic, finalLocation, intermediatePoints, currentGPXRoute, route, true, false);
+	}*/
+//	TODO recalculate route once I have found an exit
 	private void recalculateRouteInBackground(final Location start, final LatLon end, final List<LatLon> intermediates,
 			final GPXRouteParamsBuilder gpxRoute, final RouteCalculationResult previousRoute, boolean paramsChanged, boolean onlyStartPointChanged){
 		if (start == null || end == null) {

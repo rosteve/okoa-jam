@@ -15,7 +15,7 @@
         android:layout_width="fill_parent"
         android:layout_height="@dimen/list_header_height"
         android:orientation="horizontal">
-
+		<!--cp OsmAnd/no_translate.xml OsmAnd/res/values/skip_translate.xml-->
         <net.osmand.plus.widgets.TextViewEx
             android:id="@+id/fav_text"
             style="@style/DashboardSubHeader"

@@ -7,6 +7,7 @@ import java.util.List;
 import net.osmand.Location;
 import net.osmand.binary.BinaryMapRouteReaderAdapter.RouteRegion;
 import net.osmand.binary.BinaryMapRouteReaderAdapter.RouteTypeRule;
+import net.osmand.custom.MyShortcuts;
 import net.osmand.data.LatLon;
 import net.osmand.data.LocationPoint;
 import net.osmand.plus.ApplicationMode;
@@ -17,6 +18,7 @@ import net.osmand.router.TurnType;
 import net.osmand.util.Algorithms;
 import net.osmand.util.MapUtils;
 import android.content.Context;
+import android.util.Log;
 
 public class RouteCalculationResult {
 	private static double distanceClosestToIntermediate = 400;
@@ -165,7 +167,7 @@ public class RouteCalculationResult {
 			}
 		}
 	}
-
+//T
 	private static double getDistanceToLocation(List<Location> locations, LatLon p, int currentLocation) {
 		return MapUtils.getDistance(p, 
 				locations.get(currentLocation).getLatitude(), locations.get(currentLocation).getLongitude());
@@ -796,7 +798,7 @@ public class RouteCalculationResult {
 		return null;
 	}
 	
-	
+//	TODO use this to get the street name and update them with the traffic condition to store them to the database
 	
 	public List<RouteDirectionInfo> getRouteDirections() {
 		if(currentDirectionInfo < directions.size() - 1){
@@ -816,12 +818,15 @@ public class RouteCalculationResult {
 						p.setDestinationName(i.getDestinationName());
 						p.setRef(i.getRef());
 						p.setStreetName(i.getStreetName());
+//						Log.e("STREET NAME",i.getStreetName());
 						p.setDescriptionRoute(i.getDescriptionRoutePart());
 						cacheAgreggatedDirections.add(p);
 					}
 					float time = i.getExpectedTime() + p.getExpectedTime();
 					p.distance += i.distance;
 					p.setAverageSpeed(p.distance / time);
+                    Log.e("STREETNAMEOUTSIDE",i.getStreetName());
+
 					p.afterLeftTime = i.afterLeftTime;
 				}
 			}

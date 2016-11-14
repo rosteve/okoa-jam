@@ -1,1 +1,0 @@
-Please do not edit these files directly! These files are copy of https://github.com/osmandapp/Osmand/tree/master/OsmAnd/res/values-**/phrases.xml

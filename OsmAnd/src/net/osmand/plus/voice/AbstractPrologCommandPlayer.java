@@ -234,6 +234,11 @@ public abstract class AbstractPrologCommandPlayer implements CommandPlayer, Stat
 	}
 
 	@Override
+	public void playCommands(CommandBuilder builder) {
+
+	}
+
+	@Override
 	public void clear() {
 		ctx = null;
 		prologSystem = null;

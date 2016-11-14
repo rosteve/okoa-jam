@@ -115,9 +115,9 @@ public class DownloadActivity extends BaseDownloadActivity {
 				getString(R.string.download_tab_downloads), DownloadIndexFragment.class));
 		mTabs.add(new TabActivity.TabItem(R.string.download_tab_updates,
 				getString(R.string.download_tab_updates), UpdatesIndexFragment.class));
-
-		mTabs.add(new TabActivity.TabItem(R.string.download_tab_local,
-				getString(R.string.download_tab_local), NewLocalIndexesFragment.class));
+//TODO disabled the last tab
+		/*mTabs.add(new TabActivity.TabItem(R.string.download_tab_local,
+				getString(R.string.download_tab_local), NewLocalIndexesFragment.class));*/
 
 		viewPager.setAdapter(new TabActivity.OsmandFragmentPagerAdapter(getSupportFragmentManager(), mTabs));
 		mSlidingTabLayout.setViewPager(viewPager);
@@ -352,7 +352,8 @@ public class DownloadActivity extends BaseDownloadActivity {
 
 	protected void downloadWikiFiles() {
 		if (Version.isFreeVersion(getMyApplication())) {
-			dialogToInstallPaid();
+//			dialogToInstallPaid();
+//			TODO removed the this dialog version
 		} else {
 			Builder bld = new AlertDialog.Builder(this);
 			final List<IndexItem> wi = getWikipediaItems();

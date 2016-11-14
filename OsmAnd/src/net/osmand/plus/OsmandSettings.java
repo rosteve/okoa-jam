@@ -1705,7 +1705,9 @@ public class OsmandSettings {
 			if("de".equals(config.locale.getLanguage())) {
 				return "de-tts";
 			}
+//			TODO changed my language here to en
 			return "en-tts";
+//			return "en";
 		};
 	}.makeGlobal();
 	
@@ -1973,9 +1975,9 @@ public class OsmandSettings {
 	public enum DrivingRegion {
 		
 		EUROPE_ASIA(R.string.driving_region_europe_asia, MetricsConstants.KILOMETERS_AND_METERS, false, false),
-		US(R.string.driving_region_us, MetricsConstants.MILES_AND_FOOTS, false, true),
+		US(R.string.driving_region_us, MetricsConstants.KILOMETERS_AND_METERS, false, true),
 		CANADA(R.string.driving_region_canada, MetricsConstants.KILOMETERS_AND_METERS, false, true),
-		UK_AND_OTHERS(R.string.driving_region_uk, MetricsConstants.MILES_AND_FOOTS, true, false),
+		UK_AND_OTHERS(R.string.driving_region_uk, MetricsConstants.KILOMETERS_AND_METERS, false, false),
 		JAPAN(R.string.driving_region_japan, MetricsConstants.KILOMETERS_AND_METERS, true, false)
 		;
 

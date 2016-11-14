@@ -99,7 +99,7 @@ public class LocalIndexHelper {
 		return result;
 	}
 	
-
+// TODO THIS IS WHERE AM LOADING VOICE
 	private void loadVoiceData(File voiceDir, List<LocalIndexInfo> result, boolean backup, LoadLocalIndexTask loadTask) {
 		if (voiceDir.canRead()) {
 			for (File voiceF : listFilesSorted(voiceDir)) {

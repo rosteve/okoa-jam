@@ -9,8 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 /**
- * Created by Denis
- * on 28.01.15.
+ *
  */
 public class OsmandActionBarActivity extends AppCompatActivity {
 

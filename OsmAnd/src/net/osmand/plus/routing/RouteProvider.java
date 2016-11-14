@@ -67,6 +67,8 @@ import org.xml.sax.SAXException;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
+
 import btools.routingapp.IBRouterService;
 
 
@@ -301,16 +303,21 @@ public class RouteProvider {
 					res = calculateGpxRoute(params);
 				} else if (params.type == RouteService.OSMAND) {
 					res = findVectorMapsRoute(params, calcGPXRoute);
+					Log.e("type","vectormaps");
 				} else if (params.type == RouteService.BROUTER) {
 					res = findBROUTERRoute(params);
+					Log.e("type","brouter");
 				} else if (params.type == RouteService.YOURS) {
 					res = findYOURSRoute(params);
+					Log.e("type","yoursroute");
 //				} else if (params.type == RouteService.ORS) {
 //					res = findORSRoute(params);
 				} else if (params.type == RouteService.OSRM) {
 					res = findOSRMRoute(params);
+					Log.e("type","osrm");
 				} else if (params.type == RouteService.STRAIGHT){
 					res = findStraightRoute(params);
+					Log.e("type","straight");
 				}
 				else {
 					res = new RouteCalculationResult("Selected route service is not available");
@@ -331,7 +338,7 @@ public class RouteProvider {
 		}
 		return new RouteCalculationResult(null);
 	}
-
+//TODO where am calulating results
 	public RouteCalculationResult recalculatePartOfflineRoute(RouteCalculationResult res, RouteCalculationParams params) {
 		RouteCalculationResult rcr = params.previousToRecalculate;
 		List<Location> locs = new ArrayList<Location>(rcr.getRouteLocations());
@@ -783,6 +790,7 @@ public class RouteProvider {
 					result = router.searchRoute(ctx, st, en, inters);
 				}
 			} else {
+//                TODO Search route using start and finish point
 				result = router.searchRoute(ctx, st, en, inters);
 			}
 			

@@ -73,7 +73,7 @@ public class MapRouteInfoControl implements IRouteInformationListener {
 		mapView = mapActivity.getMapView();
 		routingHelper.addListener(this);
 	}
-	
+//	TODO Where i am selecting on the map
 	public boolean onSingleTap(PointF point, RotatedTileBox tileBox) {
 		if(selectFromMapTouch) {
 			LatLon latlon = tileBox.getLatLonFromPixel(point.x, point.y);
@@ -219,7 +219,7 @@ public class MapRouteInfoControl implements IRouteInformationListener {
 			}
 		});
 	}
-
+//TODO Where choosing position of destination/source point
 	private void updateFromSpinner(final View parentView) {
 		final TargetPointsHelper targets = getTargets();
 		final Spinner fromSpinner = setupFromSpinner(parentView);

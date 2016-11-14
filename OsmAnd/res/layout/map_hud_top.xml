@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <!-- TOP ROW -->
 
@@ -11,51 +11,49 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/btn_flat"
-        android:minHeight="@dimen/map_address_height" >
+        android:minHeight="@dimen/map_address_height">
 
         <!-- android:layout_weight="1" to show properly next turn -->
-            <FrameLayout
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp">
+
+
+            <TextView
+                android:id="@+id/map_address_text_shadow"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_gravity="center" >
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Long Street Name"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/map_widget_text_size"></TextView>
 
-                
-                <TextView
-                    android:id="@+id/map_address_text_shadow"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="Long Street Name"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/map_widget_text_size" >
-                </TextView>
-                    
-                <TextView
-                    android:id="@+id/map_address_text"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:ellipsize="end"
-                    android:maxLines="1"
-                    android:singleLine="true"
-                    android:text="Long Street Name"
-                    android:textColor="@color/color_black"
-                    android:textSize="@dimen/map_widget_text_size" >
-                </TextView>
-            </FrameLayout>
+            <TextView
+                android:id="@+id/map_address_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="Long Street Name"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/map_widget_text_size"></TextView>
+        </FrameLayout>
 
 
         <LinearLayout
             android:id="@+id/waypoint_info_bar"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:orientation="horizontal" >
+            android:orientation="horizontal"
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/waypoint_icon"
@@ -77,34 +75,34 @@
                 android:textSize="@dimen/default_desc_text_size"
                 android:textStyle="bold" />
 
-                  <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="4dp"
-                    android:layout_weight="1" >
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/waypoint_text_shadow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="2"
-                        android:text="Waypoint"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/map_button_text_size" />
-                    
-                    <TextView
-                        android:id="@+id/waypoint_text"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:ellipsize="end"
-                        android:maxLines="2"
-                        android:text="Waypoint"
-                        android:textColor="@color/color_black"
-                        android:textSize="@dimen/map_button_text_size" />
-                    
-                </FrameLayout>
+                <TextView
+                    android:id="@+id/waypoint_text_shadow"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="Waypoint"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/map_button_text_size" />
+
+                <TextView
+                    android:id="@+id/waypoint_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:maxLines="2"
+                    android:text="Waypoint"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/map_button_text_size" />
+
+            </FrameLayout>
 
             <ImageButton
                 android:id="@+id/waypoint_more"
@@ -125,7 +123,7 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <!-- LEFT widgets colon -->
 
@@ -133,21 +131,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="1" >
+            android:weightSum="1">
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|left"
                 android:layout_weight="0.4"
-                android:orientation="vertical" >
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:id="@+id/map_left_widgets_panel"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|left"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <!-- 
                     <include layout="@layout/map_hud_widget" />
@@ -162,14 +160,15 @@
                     android:layout_gravity="top|left"
                     android:layout_marginLeft="@dimen/map_button_margin"
                     android:layout_marginTop="@dimen/map_button_margin"
-                    android:orientation="horizontal" >
-
+                    android:orientation="horizontal">
+                    <!--TODO changed the below image button-->
                     <ImageButton
                         android:id="@+id/map_layers_button"
                         android:layout_width="@dimen/map_small_button_size"
                         android:layout_height="@dimen/map_small_button_size"
                         android:background="@drawable/btn_inset_circle_trans"
-                        android:src="@drawable/ic_action_test_light" />
+                        android:src="@drawable/ic_action_test_light"
+                        android:visibility="invisible" />
 
                     <ImageButton
                         android:id="@+id/map_compass_button"
@@ -178,6 +177,15 @@
                         android:layout_marginLeft="@dimen/map_small_button_margin"
                         android:background="@drawable/btn_inset_circle_trans"
                         android:src="@drawable/ic_action_test_light" />
+
+                    <ImageButton
+                        android:id="@+id/map_jam"
+                        android:layout_width="@dimen/map_small_button_size"
+                        android:layout_height="@dimen/map_small_button_size"
+                        android:layout_marginLeft="@dimen/map_small_button_margin"
+                        android:background="@drawable/btn_inset_circle_trans"
+                        android:src="@drawable/ic_action_test_light" />
+
                 </LinearLayout>
             </LinearLayout>
             <!-- empty block to not let widgets grow more than 40% -->
@@ -185,8 +193,7 @@
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="0.6" >
-            </LinearLayout>
+                android:layout_weight="0.6"></LinearLayout>
         </LinearLayout>
 
         <!-- RIGHT widgets colon -->
@@ -195,34 +202,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:weightSum="1" >
+            android:weightSum="1">
 
             <!-- empty block to not let widgets grow more than 40% -->
 
             <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_weight="0.6" >
-            </LinearLayout>
+                android:layout_weight="0.6"></LinearLayout>
 
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="top|right"
-                android:layout_weight="0.4" >
+                android:layout_weight="0.4">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="top|right"
-                    android:orientation="vertical" >
+                    android:orientation="vertical">
 
                     <LinearLayout
                         android:id="@+id/map_right_widgets_panel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="top|right"
-                        android:orientation="vertical" >
+                        android:orientation="vertical">
 
                         <include layout="@layout/map_hud_widget" />
 
@@ -249,7 +255,7 @@
             android:layout_marginTop="@dimen/map_button_margin"
             android:background="@drawable/btn_round"
             android:orientation="vertical"
-            android:visibility="gone" >
+            android:visibility="gone">
 
             <ImageView
                 android:id="@+id/map_lanes"
@@ -260,7 +266,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_weight="1" >
+                android:layout_weight="1">
 
                 <TextView
                     android:id="@+id/map_lanes_dist_text_shadow"
@@ -271,7 +277,7 @@
                     android:text="1048 km"
                     android:textColor="@color/color_black"
                     android:textSize="@dimen/map_widget_text_size_small" />
-                
+
                 <TextView
                     android:id="@+id/map_lanes_dist_text"
                     android:layout_width="wrap_content"

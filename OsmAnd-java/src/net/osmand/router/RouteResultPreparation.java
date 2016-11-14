@@ -177,6 +177,8 @@ public class RouteResultPreparation {
 		for (int i = 1; i < result.size(); i++) {
 			RouteSegmentResult rr = result.get(i);
 			RouteSegmentResult pr = result.get(i - 1);
+//            println(rr.getObject().getName()+"Road "+i);
+//            println(rr.getObject().getName()+"Road "+i +"-1");
 			double d = MapUtils.getDistance(pr.getPoint(pr.getEndPointIndex()), rr.getPoint(rr.getStartPointIndex()));
 			if (d > 0) {
 				System.err.println("Points are not connected : " + pr.getObject() + "(" + pr.getEndPointIndex() + ") -> " + rr.getObject()
@@ -191,17 +193,22 @@ public class RouteResultPreparation {
 			ctx.routingTime = finalSegment.distanceFromStart;
 			println("Routing calculated time distance " + finalSegment.distanceFromStart);
 			// Get results from opposite direction roads
+//            println(finalSegment.getRoad().getName()+" finalsegment");
 			RouteSegment segment = finalSegment.reverseWaySearch ? finalSegment : 
 				finalSegment.opposite.getParentRoute();
+//            println(finalSegment.opposite.getSegmentStart()+" this is the starting point");
 			int parentSegmentStart = finalSegment.reverseWaySearch ? finalSegment.opposite.getSegmentStart() : 
 				finalSegment.opposite.getParentSegmentEnd();
 			float parentRoutingTime = -1;
+            int i=0;
 			while (segment != null) {
+//                println(segment.getRoad().getName()+i +" converting");
 				RouteSegmentResult res = new RouteSegmentResult(segment.road, parentSegmentStart, segment.getSegmentStart());
 				parentRoutingTime = calcRoutingTime(parentRoutingTime, finalSegment, segment, res);
 				parentSegmentStart = segment.getParentSegmentEnd();
 				segment = segment.getParentRoute();
 				addRouteSegmentToResult(ctx, result, res, false);
+                i++;
 			}
 			// reverse it just to attach good direction roads
 			Collections.reverse(result);

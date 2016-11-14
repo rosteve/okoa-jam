@@ -20,8 +20,8 @@ import android.media.MediaPlayer;
  * them using media player 
  */
 public class MediaCommandPlayerImpl extends AbstractPrologCommandPlayer implements MediaPlayer.OnCompletionListener {
-	
-	private static final String CONFIG_FILE = "_config.p";
+// TODO changed config.p from _config.p
+	private static final String CONFIG_FILE = "config.p";
 	private static final int[] MEDIA_VOICE_VERSION = new int[] { 0 }; // MUST BE SORTED, list of supported versions
 
 	private static final Log log = PlatformUtil.getLog(MediaCommandPlayerImpl.class);
@@ -108,6 +108,7 @@ public class MediaCommandPlayerImpl extends AbstractPrologCommandPlayer implemen
 		try {
 			if (sleep != 0) {
 				log.debug("Delaying "+sleep);
+				log.debug("config file : " + CONFIG_FILE);
 				Thread.sleep(sleep);
 			}
 		} catch (InterruptedException e) {
@@ -152,6 +153,7 @@ public class MediaCommandPlayerImpl extends AbstractPrologCommandPlayer implemen
 	
 	public static boolean isMyData(File voiceDir) {
 		return new File(voiceDir, CONFIG_FILE).exists();
+
 	}
 
 	@Override

@@ -65,6 +65,7 @@ public class BinaryRoutePlanner {
 	 * Calculate route between start.segmentEnd and end.segmentStart (using A* algorithm)
 	 * return list of segments
 	 */
+//	TODO A* Algorithm implementation
 	@SuppressWarnings("unused")
 	FinalRouteSegment searchRouteInternal(final RoutingContext ctx, RouteSegmentPoint start, RouteSegmentPoint end,
 			RouteSegment recalculationEnd ) throws InterruptedException, IOException {
@@ -92,15 +93,22 @@ public class BinaryRoutePlanner {
 		PriorityQueue<RouteSegment>  graphSegments = graphDirectSegments;
 		
 		FinalRouteSegment finalSegment = null;
-		boolean onlyBackward = ctx.getPlanRoadDirection() < 0;
+
+
+        boolean onlyBackward = ctx.getPlanRoadDirection() < 0;
 		boolean onlyForward = ctx.getPlanRoadDirection() > 0 ;
+        println("initial graph segment size "+graphSegments.size());
+//        int i=0;
 		while (!graphSegments.isEmpty()) {
 			RouteSegment segment = graphSegments.poll();
+//            println(segment.getRoad().getName()+" segmentpolled"+i);
+//            i++;
 			// use accumulative approach
 			ctx.memoryOverhead = (visitedDirectSegments.size() + visitedOppositeSegments.size()) * STANDARD_ROAD_VISITED_OVERHEAD + 
 					(graphDirectSegments.size() +
 					graphReverseSegments.size()) * STANDARD_ROAD_IN_QUEUE_OVERHEAD;
-			
+//           TODO Testing all the segments that the road is passing through and printing them out
+//            println(segment.getRoad().getName());
 			if(TRACE_ROUTING){
 				printRoad(">", segment, !forwardSearch);
 			}
@@ -112,6 +120,7 @@ public class BinaryRoutePlanner {
 					printMemoryConsumption("Memory occupied after calculation : ");
 				}
 				finalSegment = (FinalRouteSegment) segment;
+//                println("Final segment found"+finalSegment.getRoad().getName());
 				if(TRACE_ROUTING){
 					println("Final segment found");
 				}
@@ -128,8 +137,11 @@ public class BinaryRoutePlanner {
 				boolean doNotAddIntersections = onlyBackward;
 				processRouteSegment(ctx, false, graphDirectSegments, visitedDirectSegments, 
 						segment, visitedOppositeSegments, doNotAddIntersections);
+//                println(forwardSearch+"-forwardsearch "+onlyBackward+"-onlybackward value Road is"+segment.getRoad().getName());
 			} else {
-				boolean doNotAddIntersections = onlyForward;
+//                println("elseforwardsearch-"+onlyForward+"-onlyforward value Road is"+segment.getRoad().getName());
+
+                boolean doNotAddIntersections = onlyForward;
 				processRouteSegment(ctx, true, graphReverseSegments, visitedOppositeSegments, segment,
 						visitedDirectSegments, doNotAddIntersections);
 			}
@@ -145,6 +157,7 @@ public class BinaryRoutePlanner {
 //					forwardSearch = false;
 //				} else if (graphDirectSegments.size() < 2 * graphReverseSegments.size()) {
 //					forwardSearch = true;
+//                println(forwardSearch+" is the forwardsearch new in 2d direction"+segment.getRoad().getName());
 //				}
 			} else {
 				// different strategy : use onedirectional graph
@@ -167,7 +180,7 @@ public class BinaryRoutePlanner {
 				throw new InterruptedException("Route calculation interrupted");
 			}
 		}
-		printDebugMemoryInformation(ctx, graphDirectSegments, graphReverseSegments, visitedDirectSegments, visitedOppositeSegments);
+		 printDebugMemoryInformation(ctx, graphDirectSegments, graphReverseSegments, visitedDirectSegments, visitedOppositeSegments);
 		return finalSegment;
 	}
 
@@ -396,6 +409,7 @@ public class BinaryRoutePlanner {
 		}
 		boolean directionAllowed = initDirectionAllowed;
 		if(!directionAllowed) {
+//            println("  >> Already visited "+segment.getRoad().getName());
 			if(TRACE_ROUTING) {
 				println("  >> Already visited");
 			}
@@ -412,6 +426,8 @@ public class BinaryRoutePlanner {
 		boolean dir = segment.isPositive();
 		while (directionAllowed) {
 			// mark previous interval as visited and move to next intersection
+//            TODO printing road name and segmstart allowed
+//            println(segment.getRoad().getName()+" "+segment.getSegmentStart());
 			short prevInd = segmentPoint;
 			if(dir) {
 				segmentPoint ++;
@@ -446,6 +462,8 @@ public class BinaryRoutePlanner {
 			
 			boolean alreadyVisited = checkIfOppositieSegmentWasVisited(ctx, reverseWaySearch, graphSegments, segment, oppositeSegments, 
 					segmentPoint, segmentDist, obstaclesTime);
+
+//            TODO Checking if road was already visited
 			if (alreadyVisited) {
 				directionAllowed = false;
 				continue;
@@ -508,6 +526,8 @@ public class BinaryRoutePlanner {
 		if(directionAllowed && visitedSegments.containsKey(calculateRoutePointId(segment, segment.isPositive()))) {
 			directionAllowed = false;
 		}
+
+//        println(segment.getRoad().getName()+" permission allowed is "+directionAllowed);
 		return directionAllowed;
 	}
 	

@@ -19,7 +19,7 @@ apply plugin: 'com.android.application'
 
 android {
 	compileSdkVersion 21
-	buildToolsVersion "23.0.1"
+	buildToolsVersion '24.0.2'
 
 	signingConfigs {
 		development {
@@ -44,6 +44,7 @@ android {
 		versionCode System.getenv("APK_NUMBER_VERSION") ? System.getenv("APK_NUMBER_VERSION").toInteger() : versionCode
 		//versionName already assigned in code
 		//versionName System.getenv("APK_VERSION")? System.getenv("APK_VERSION").toString(): versionName
+//        multiDexEnabled true
 	}
 
 	lintOptions {
@@ -60,6 +61,7 @@ android {
 
 	dexOptions {
 		jumboMode = true
+		javaMaxHeapSize "3g"
 	}
 
 	sourceSets {
@@ -189,6 +191,7 @@ task collectVoiceAssets(type: Sync) {
 	into "assets/voice"
 	include "**/*.p"
 }
+
 
 
 task collectFonts(type: Copy) {
@@ -323,11 +326,14 @@ dependencies {
 	// compile "com.github.ksoichiro:android-observablescrollview:1.5.0"
 	//	 compile "com.android.support:appcompat-v7:22.2.1"
 	// compile "com.github.shell-software:fab:1.0.5"
-	//	compile 'com.android.support:design:22.2.1'
+//    compile 'com.android.support:design:22.2.1'
+//    compile 'com.android.support:design:23.0.1'
 	legacyCompile "net.osmand:OsmAndCore_android:0.1-SNAPSHOT@jar"
 	qtcoredebugCompile "net.osmand:OsmAndCore_androidNativeDebug:0.1-SNAPSHOT@aar"
 	qtcoredebugCompile "net.osmand:OsmAndCore_android:0.1-SNAPSHOT@aar"
 	qtcoreCompile "net.osmand:OsmAndCore_androidNativeRelease:0.1-SNAPSHOT@aar"
 	qtcoreCompile "net.osmand:OsmAndCore_android:0.1-SNAPSHOT@aar"
-
+	/*compile ('com.google.android.gms:play-services-vision:9.2.0'){
+			exclude module: 'support-v4'
+	}*/
 }

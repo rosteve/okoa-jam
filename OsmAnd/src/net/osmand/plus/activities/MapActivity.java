@@ -38,6 +38,7 @@ import net.osmand.access.AccessibleActivity;
 import net.osmand.access.AccessibleToast;
 import net.osmand.access.MapAccessibilityActions;
 import net.osmand.core.android.AtlasMapRendererView;
+import net.osmand.custom.MyShortcuts;
 import net.osmand.data.LatLon;
 import net.osmand.data.PointDescription;
 import net.osmand.data.QuadPoint;
@@ -63,6 +64,7 @@ import net.osmand.plus.activities.search.SearchActivity;
 import net.osmand.plus.base.FailSafeFuntions;
 import net.osmand.plus.base.MapViewTrackingUtilities;
 import net.osmand.plus.dashboard.DashboardOnMap;
+import net.osmand.plus.helpers.AvoidSpecificRoads;
 import net.osmand.plus.helpers.GpxImportHelper;
 import net.osmand.plus.helpers.WakeLockHelper;
 import net.osmand.plus.mapcontextmenu.MapContextMenu;
@@ -80,6 +82,9 @@ import net.osmand.plus.views.OsmandMapTileView;
 import net.osmand.plus.views.corenative.NativeCoreContext;
 import net.osmand.render.RenderingRulesStorage;
 import net.osmand.util.Algorithms;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -165,6 +170,27 @@ public class MapActivity extends AccessibleActivity {
 		// Full screen is not used here
 		// getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.main);
+//		MyShortcuts.setDefaults("impassable","false",this);
+
+
+
+
+
+
+/*
+*
+* Starting GPS automatically
+*
+* */
+//        TODO create automatic start of turn on GPS inside app
+/*
+*
+* End of Gps section
+*
+*
+*
+* */
+
 
 		mapView = new OsmandMapTileView(this, getWindow().getDecorView().getWidth(),
 				getWindow().getDecorView().getHeight());
@@ -233,6 +259,7 @@ public class MapActivity extends AccessibleActivity {
 					.add(R.id.fragmentContainer, new FirstUsageFragment(),
 							FirstUsageFragment.TAG).commit();
 		}
+//       TODO Creating my menu here
 		final ListView menuItemsListView = (ListView) findViewById(R.id.menuItems);
 		menuItemsListView.setDivider(null);
 		final ContextMenuAdapter contextMenuAdapter = mapActions.createMainOptionsMenu();
@@ -388,6 +415,9 @@ public class MapActivity extends AccessibleActivity {
 			return;
 		}
 		super.onBackPressed();
+//		TODO remove impassable roads here
+        AvoidSpecificRoads.removeImpassableRoadJam();
+
 	}
 
 	@Override

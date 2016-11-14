@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import net.osmand.IProgress;
 import net.osmand.IndexConstants;
@@ -49,8 +50,8 @@ import java.util.Random;
 import btools.routingapp.BRouterServiceConnection;
 
 /**
- * Created by Denis
- * on 03.03.15.
+ *
+ *
  */
 public class AppInitializer implements IProgress {
 
@@ -325,6 +326,7 @@ public class AppInitializer implements IProgress {
 						app.player.clear();
 					}
 					app.player = CommandPlayerFactory.createCommandPlayer(voiceProvider, app, uiContext);
+					Log.e("voiceprovider",voiceProvider);
 					app.getRoutingHelper().getVoiceRouter().setPlayer(app.player);
 					if(dlg != null) {
 						dlg.dismiss();

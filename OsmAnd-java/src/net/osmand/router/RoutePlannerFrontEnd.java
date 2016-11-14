@@ -106,12 +106,13 @@ public class RoutePlannerFrontEnd {
 		useSmartRouteRecalculation = use;
 	}
 			
-	
+//	TODO Searching Route
 	public List<RouteSegmentResult> searchRoute(final RoutingContext ctx, LatLon start, LatLon end, List<LatLon> intermediates, 
 			PrecalculatedRouteDirection routeDirection) throws IOException, InterruptedException {
 		if(ctx.calculationProgress == null) {
 			ctx.calculationProgress = new RouteCalculationProgress();
 		}
+//		TODO Getting MaxDistance
 		boolean intermediatesEmpty = intermediates == null || intermediates.isEmpty();
 		double maxDistance = MapUtils.getDistance(start, end);
 		if(!intermediatesEmpty) {
@@ -121,6 +122,7 @@ public class RoutePlannerFrontEnd {
 				b = l;
 			}
 		}
+//        TODO Calculating route direction
 		if(ctx.calculationMode == RouteCalculationMode.COMPLEX && routeDirection == null
 				&& maxDistance > ctx.config.DEVIATION_RADIUS * 6) {
 			RoutingContext nctx = buildRoutingContext(ctx.config, ctx.nativeLib, ctx.getMaps(), RouteCalculationMode.BASE);
@@ -128,6 +130,8 @@ public class RoutePlannerFrontEnd {
 			List<RouteSegmentResult> ls = searchRoute(nctx, start, end, intermediates);
 			routeDirection = PrecalculatedRouteDirection.build(ls, ctx.config.DEVIATION_RADIUS, ctx.getRouter().getMaxDefaultSpeed());
 		}
+
+//        TODO calculating Route using native routing
 		if(intermediatesEmpty && ctx.nativeLib != null) {
 			ctx.startX = MapUtils.get31TileNumberX(start.getLongitude());
 			ctx.startY = MapUtils.get31TileNumberY(start.getLatitude());
@@ -148,6 +152,7 @@ public class RoutePlannerFrontEnd {
 			return res;	
 		}
 		int indexNotFound = 0;
+//        TODO Adding all points  from start and intermediates to end to points array
 		List<RouteSegmentPoint> points = new ArrayList<RouteSegmentPoint>();
 		if(!addSegment(start, ctx, indexNotFound++, points)){
 			return null;
@@ -162,6 +167,8 @@ public class RoutePlannerFrontEnd {
 		if(!addSegment(end, ctx, indexNotFound++, points)){
 			return null;
 		}
+
+//        TODO finished adding all points. Now am searching the route using the searchRoute
 		List<RouteSegmentResult> res = searchRoute(ctx, points, routeDirection);
 		// make start and end more precise
 		makeStartEndPointsPrecise(res, start, end, intermediates);
@@ -280,10 +287,12 @@ public class RoutePlannerFrontEnd {
 
 	private boolean addSegment(LatLon s, RoutingContext ctx, int indexNotFound, List<RouteSegmentPoint> res) throws IOException {
 		RouteSegmentPoint f = findRouteSegment(s.getLatitude(), s.getLongitude(), ctx);
+        System.out.println(s.getLatitude()+", longitude is"+ s.getLongitude());
 		if(f == null){
 			ctx.calculationProgress.segmentNotFound = indexNotFound;
 			return false;
 		} else {
+            System.out.println("Route segment found " +f.getRoad().getName());
 			log.info("Route segment found " + f.getRoad().id + " " + f.getRoad().getName());
 			res.add(f);
 			return true;
@@ -438,6 +447,7 @@ public class RoutePlannerFrontEnd {
 			}
 			local.visitor = ctx.visitor;
 			local.calculationProgress = ctx.calculationProgress;
+//            TODO search using A* Algorithm every point
 			List<RouteSegmentResult> res = searchRouteInternalPrepare(local, points.get(i), points.get(i + 1), routeDirection);
 
 			results.addAll(res);
@@ -450,6 +460,8 @@ public class RoutePlannerFrontEnd {
 			ctx.timeToLoadHeaders += local.timeToLoadHeaders;
 			ctx.relaxedSegments += local.relaxedSegments;
 			ctx.routingTime += local.routingTime;
+
+//            System.out.println(local.relaxedSegments);
 
 			local.unloadAllData(ctx);
 			if (restPartRecalculatedRoute != null) {

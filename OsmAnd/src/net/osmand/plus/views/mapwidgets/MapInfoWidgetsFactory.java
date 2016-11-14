@@ -223,7 +223,7 @@ public class MapInfoWidgetsFactory {
 		}
 		
 		
-
+//TODO this is where am updating my speed in OsmAnd
 		public boolean updateInfo(DrawSettings d) {
 			String text = null;
 			TurnType[] type = new TurnType[1];

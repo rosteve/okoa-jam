@@ -34,3 +34,6 @@ Thumbs.db
 
 # Output files
 build
+
+# Sound Files
+*.ogg

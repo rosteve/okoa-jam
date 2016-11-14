@@ -16,7 +16,7 @@
 -dontshrink
 -dontwarn alice.**
 -verbose
-
+-keepattributes EnclosingMethod
 #-keep class !android.support.v7.internal.view.menu.**,android.support.** {*;}
 #-keep class net.osmand.** { *; }
 #-keep interface net.osmand.** { *; }

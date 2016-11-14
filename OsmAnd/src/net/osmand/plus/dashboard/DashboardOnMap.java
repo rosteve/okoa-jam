@@ -320,7 +320,7 @@ public class DashboardOnMap implements ObservableScrollViewCallbacks {
 		}
 	}
 
-
+//TODO this is the my current position GPS button. Do my logic here
 	private void initActionButton() {
 		actionButton = new ImageView(mapActivity);
 		int btnSize = (int) mapActivity.getResources().getDimension(R.dimen.map_button_size);

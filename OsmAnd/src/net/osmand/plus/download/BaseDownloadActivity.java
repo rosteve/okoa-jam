@@ -160,7 +160,9 @@ public class BaseDownloadActivity extends ActionBarProgressActivity {
 		if (Version.isFreeVersion(getMyApplication())) {
 			int total = settings.NUMBER_OF_FREE_DOWNLOADS.get();
 			if (total > MAXIMUM_AVAILABLE_FREE_DOWNLOADS) {
-				dialogToInstallPaid();
+//				dialogToInstallPaid();
+//                TODO download even when exceeded the amount to download
+                downloadFilesCheckInternet();
 			} else {
 				downloadFilesCheckInternet();
 			}
@@ -248,7 +250,8 @@ public class BaseDownloadActivity extends ActionBarProgressActivity {
 
 	private void prepareDownloadDirectory() {
 		if (!getMyApplication().getResourceManager().getIndexFileNames().isEmpty()) {
-			showDialogOfFreeDownloadsIfNeeded();
+//			TODO removed dialog here
+//			showDialogOfFreeDownloadsIfNeeded();
 		}
 	}
 
